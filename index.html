@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- Reproductor Plyr -->
-    <video id="player" controls></video>
+    <video id="player" controls muted></video>
 
     <!-- Incluye la biblioteca Plyr JS -->
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
@@ -26,12 +26,14 @@
         // Si hay una URL de video, carga el reproductor
         if (videoUrl) {
             const player = new Plyr('#player', {
-                controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen']
+                controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+                autoplay: true // Habilita la reproducción automática
             });
 
             // Configura la fuente del video
             const videoElement = document.getElementById('player');
             videoElement.src = videoUrl;
+            videoElement.muted = true; // Asegúrate de que el video esté silenciado para la reproducción automática
         } else {
             document.body.innerHTML = "<p>No se ha proporcionado una URL de video.</p>";
         }
