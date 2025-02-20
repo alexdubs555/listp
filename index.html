@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- Reproductor Plyr -->
-    <video id="player" controls muted></video>
+    <video id="player" controls></video> <!-- Eliminado el atributo 'muted' -->
 
     <!-- Incluye la biblioteca Plyr JS -->
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
@@ -33,7 +33,7 @@
             // Configura la fuente del video
             const videoElement = document.getElementById('player');
             videoElement.src = videoUrl;
-            videoElement.muted = true; // Asegúrate de que el video esté silenciado para la reproducción automática
+            // No es necesario establecer 'muted' aquí, ya que queremos que el video suene
         } else {
             document.body.innerHTML = "<p>No se ha proporcionado una URL de video.</p>";
         }
