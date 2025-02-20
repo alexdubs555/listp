@@ -6,9 +6,21 @@
     <title>Reproductor Plyr</title>
     <!-- Incluye la biblioteca Plyr CSS -->
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-    <!-- Reproductor Plyr -->
+    <!-- Reproductor -->
     <video id="player" controls></video> <!-- Eliminado el atributo 'muted' -->
 
     <!-- Incluye la biblioteca Plyr JS -->
@@ -33,9 +45,8 @@
             // Configura la fuente del video
             const videoElement = document.getElementById('player');
             videoElement.src = videoUrl;
-            // No es necesario establecer 'muted' aquí, ya que queremos que el video suene
         } else {
-            document.body.innerHTML = "<p>No se ha proporcionado una URL de video.</p>";
+            document.body.innerHTML = "<p style='text-align: center; padding: 20px;'>No se ha proporcionado una URL de video. Por favor, proporciona una URL válida usando el parámetro 'video' en la URL.</p>";
         }
     </script>
 </body>
