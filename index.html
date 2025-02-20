@@ -4,22 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reproductor Plyr</title>
-    <!-- CSS de Plyr -->
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+    <!-- Incluye la biblioteca Plyr CSS -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 </head>
 <body>
+    <!-- Reproductor Plyr -->
+    <video id="player" controls></video>
 
-    <!-- Reproductor de video -->
-    <video controls crossorigin playsinline id="player">
-        <source src="https://www.example.com/video.mp4" type="video/mp4" />
-        <!-- Puedes agregar más fuentes aquí -->
-        Tu navegador no soporta HTML5 video.
-    </video>
-
-    <!-- JS de Plyr -->
-    <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
+    <!-- Incluye la biblioteca Plyr JS -->
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
     <script>
-        const player = new Plyr('#player');
+        // Función para obtener el parámetro de la URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Obtén la URL del video desde el parámetro "video" en la URL
+        const videoUrl = getQueryParam('video');
+
+        // Si hay una URL de video, carga el reproductor
+        if (videoUrl) {
+            const player = new Plyr('#player', {
+                controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen']
+            });
+
+            // Configura la fuente del video
+            const videoElement = document.getElementById('player');
+            videoElement.src = videoUrl;
+        } else {
+            document.body.innerHTML = "<p>No se ha proporcionado una URL de video.</p>";
+        }
     </script>
 </body>
 </html>
